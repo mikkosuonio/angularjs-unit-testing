@@ -383,6 +383,10 @@ module.exports = function (grunt) {
       unit: {
         configFile: 'test/karma.conf.js',
         singleRun: true
+      },
+      continuous: {
+        configFile: 'test/karma.conf.js',
+        singleRun: false
       }
     }
   });
@@ -408,12 +412,19 @@ module.exports = function (grunt) {
     grunt.task.run(['serve:' + target]);
   });
 
-  grunt.registerTask('test', [
-    'clean:server',
-    'concurrent:test',
-    'autoprefixer',
-    'connect:test',
-    'karma'
+  grunt.registerTask('test', '', function(testMode) {
+    var mode = testMode || 'unit';
+    grunt.task.run([
+      'clean:server',
+      'concurrent:test',
+      'autoprefixer',
+      'connect:test',
+    ]);
+    grunt.task.run('karma:' + mode);
+  });
+
+  grunt.registerTask('autotest', [
+    'test:continuous'
   ]);
 
   grunt.registerTask('build', [
