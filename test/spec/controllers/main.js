@@ -12,6 +12,15 @@ describe('Controller: MainCtrl:', function () {
     things = _things_;
   }
 
+  var $q;
+  function captureTestDependencies(_$q_) {
+    $q = _$q_;
+  }
+  beforeEach(function() {
+    inject(captureDependencies);
+    inject(captureTestDependencies);
+  });
+
   // Initialize the controller and a mock scope
   var MainCtrl,
     scope;
@@ -20,13 +29,12 @@ describe('Controller: MainCtrl:', function () {
     MainCtrl = $controller('MainCtrl', {
       $scope: scope
     });
+    flushPromises();
   }
 
   describe('initialization:', function() {
     beforeEach(function() {
-      inject(captureDependencies);
-      things.getAll = jasmine.createSpy('getAll')
-        .and.returnValue(['one', 'two']);
+      // TODO
       inject(initController);
     });
 
@@ -34,4 +42,10 @@ describe('Controller: MainCtrl:', function () {
       expect(scope.awesomeThings).toEqual(['one', 'two']);
     });
   });
+
+  function flushPromises() {
+    inject(function($rootScope) {
+      $rootScope.$apply();
+    });
+  }
 });

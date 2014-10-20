@@ -7,7 +7,10 @@
  * # MainCtrl
  * Controller of the jsunittestingApp
  */
-angular.module('controllers.MainCtrl', ['services.thingsFromServer'])
+angular.module('controllers.MainCtrl', ['services.thingsAsPromised'])
   .controller('MainCtrl', function ($scope, things) {
-    $scope.awesomeThings = things.getAll();
+    things.getAll()
+      .then(function(allThings) {
+        $scope.awesomeThings = allThings;
+      });
   });
