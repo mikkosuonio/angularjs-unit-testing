@@ -12,7 +12,8 @@ describe('Service: services.things.things:', function () {
   }));
 
   it('should give a list of things', function () {
-    // TODO
+    var result = things.getAll();
+    expect(result.length).toEqual(3);
   });
 
 });

@@ -25,12 +25,13 @@ describe('Controller: MainCtrl:', function () {
   describe('initialization:', function() {
     beforeEach(function() {
       inject(captureDependencies);
-      // TODO
+      things.getAll = jasmine.createSpy('getAll')
+        .and.returnValue(['one', 'two']);
       inject(initController);
     });
 
     it('should attach a list of awesomeThings to the scope', function () {
-      // TODO
+      expect(scope.awesomeThings).toEqual(['one', 'two']);
     });
   });
 });
