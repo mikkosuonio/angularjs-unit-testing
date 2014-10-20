@@ -1,22 +1,36 @@
 'use strict';
 
-describe('Controller: MainCtrl', function () {
+describe('Controller: MainCtrl:', function () {
 
   // load the controller's module
-  beforeEach(module('jsunittestingApp'));
+  beforeEach(module('controllers.MainCtrl'));
 
-  var MainCtrl,
-    scope;
+  beforeEach(module('mock.services.things'));
+
+  var things;
+  function captureDependencies(_things_) {
+    things = _things_;
+  }
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope) {
+  var MainCtrl,
+    scope;
+  function initController($controller, $rootScope) {
     scope = $rootScope.$new();
     MainCtrl = $controller('MainCtrl', {
       $scope: scope
     });
-  }));
+  }
 
-  it('should attach a list of awesomeThings to the scope', function () {
-    expect(scope.awesomeThings.length).toBe(3);
+  describe('initialization:', function() {
+    beforeEach(function() {
+      inject(captureDependencies);
+      // TODO
+      inject(initController);
+    });
+
+    it('should attach a list of awesomeThings to the scope', function () {
+      // TODO
+    });
   });
 });

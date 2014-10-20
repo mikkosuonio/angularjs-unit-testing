@@ -10,6 +10,7 @@
  */
 angular
   .module('jsunittestingApp', [
+    'controllers.MainCtrl',
     'ngRoute'
   ])
   .config(function ($routeProvider) {
