@@ -23,7 +23,12 @@ describe('Service: services.thingsFromServer.things:', function () {
   });
 
   it('should give a list of things', function () {
-    // TODO
+    $httpBackend
+      .expect('GET', 'resources/things.json')
+      .respond([{name: 'a'}, {name: 'b'}]);
+    var result = things.getAll();
+    $httpBackend.flush();
+    expect(result).toEqual([{name: 'a'}, {name: 'b'}]);
   });
 
 });
