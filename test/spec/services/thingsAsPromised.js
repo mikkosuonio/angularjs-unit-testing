@@ -28,7 +28,10 @@ describe('Service: services.thingsAsPromised.things:', function () {
       .respond([{name: 'a'}, {name: 'b'}]);
 
     var result;
-    // TODO
+    things.getAll()
+      .then(function(data) {
+        result = data;
+      });
     $httpBackend.flush();
 
     expect(result).toEqual([{name: 'a'}, {name: 'b'}]);

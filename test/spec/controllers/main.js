@@ -34,7 +34,8 @@ describe('Controller: MainCtrl:', function () {
 
   describe('initialization:', function() {
     beforeEach(function() {
-      // TODO
+      things.getAll = jasmine.createSpy('getAll')
+        .and.returnValue($q.when(['one', 'two']));
       inject(initController);
     });
 
