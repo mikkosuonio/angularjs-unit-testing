@@ -7,7 +7,7 @@
  * # MainCtrl
  * Controller of the jsunittestingApp
  */
-angular.module('controllers.MainCtrl', ['services.things'])
+angular.module('controllers.MainCtrl', ['services.thingsFromServer'])
   .controller('MainCtrl', function ($scope, things) {
     $scope.awesomeThings = things.getAll();
   });
